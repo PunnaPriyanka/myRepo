@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Fetch Files') {
+            steps {
+                git 'https://github.com/PunnaPriyanka/myRepo.git'
+            }
+        }
+        stage('building') {
+            steps {
+                echo 'Building Pipeline Project'
+                bat 'javac hello.java'
+            }
+        }
+        stage('Executing') {
+            steps {
+                echo 'Exceuting program.....'
+                bat 'java hello'
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'Deploying.....'
+            }
+        }
+    }
+    post{
+        success{
+            echo 'Pipeine executed successfully'
+        }
+        failure{
+            echo 'Pipeline Failed'
+        }
+    }
+}
