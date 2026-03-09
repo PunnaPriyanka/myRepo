@@ -2,35 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Fetch Files') {
+        stage('Checkout') {
             steps {
                 git 'https://github.com/PunnaPriyanka/myRepo.git'
             }
         }
-        stage('building') {
-            steps {
-                echo 'Building Pipeline Project'
-                bat 'javac hello.java'
-            }
-        }
-        stage('Executing') {
-            steps {
-                echo 'Exceuting program.....'
-                bat 'java hello'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'Deploying.....'
-            }
-        }
-    }
-    post{
-        success{
-            echo 'Pipeine executed successfully'
-        }
-        failure{
-            echo 'Pipeline Failed'
+        stage('Publish') {
+           steps{
+               publishHTML([
+            allowmissing:true,
+            alwaysLinktoLastBuild : false,
+            KeepAll : false,
+            reportDir : '.',
+            reportFiles : 'simple.html',
+            reportName : 'MY HTML PAGE'
+               ])
+           }
+            
         }
     }
 }
