@@ -10,12 +10,12 @@ pipeline {
         stage('Publish') {
            steps{
                publishHTML([
-            allowmissing:true,
-            alwaysLinktoLastBuild : false,
-            KeepAll : false,
-            reportDir : '.',
-            reportFiles : 'simple.html',
-            reportName : 'MY HTML PAGE'
+                 allowmissing:true,
+                 alwaysLinktoLastBuild : false,
+                 KeepAll : false,
+                 reportDir : '.',
+                 reportFiles : 'simple.html',
+                 reportName : 'MY HTML PAGE'
                ])
            }
             
